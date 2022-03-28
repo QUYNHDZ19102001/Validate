@@ -51,10 +51,19 @@
             form: '#form-1',
             errorSelector: '.form-message',
             rules: [
-                Validator.isRequired('#fullname'),
-                Validator.isEmail('#email'),
-                Validator.isMinLength('#password', 8)
-            ]
+                Validator.isRequired('#fullname', 'vui lòng kiểm tra lại tên người dùng'),
+                Validator.isRequired('#email', 'email không được bỏ trống'),
+                Validator.isEmail('#email', 'vui lòng kiểm tra lại email'),
+                Validator.isRequired('#password'),
+                Validator.isMinLength('#password', 8, 'mật khẩu phải lớn hơn 8 ký tự'),
+                Validator.isRequired('#password_confirmation'),
+                Validator.isConfirm('#password_confirmation', function() {
+                    return document.querySelector('#form-1 #password').value;
+                }, 'mật khẩu nhập lại không chính xác')
+            ],
+            onSubmit: function(data) {
+                
+            }
         });
     </script>
 
